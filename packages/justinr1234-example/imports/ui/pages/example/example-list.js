@@ -54,6 +54,7 @@ const events = {
     ExampleCollection.remove({ _id }, error => {
       if (error) {
         handleError({ error });
+        return;
       }
 
       debug(`Successfully removed ${_id}`);
