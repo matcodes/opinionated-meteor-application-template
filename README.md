@@ -9,6 +9,7 @@ Table of Contents
   * [Walkthrough](#walkthrough)
      * [Directory structure](#directory-structure)
      * [Import conventions](#import-conventions)
+     * [Dynamic imports](#dynamic-imports)
      * [Naming conventions](#naming-conventions)
      * [Preinstalled packages](#preinstalled-packages)
      * [Application functionality](#application-functionality)
@@ -180,6 +181,18 @@ if (ExampleCollection.find().count() === 0) {
 ```
 
 This strategy is not ideal for all application scenarios, but for those just starting to get comfortable with importing in Javascript, it should reduce confusion and import-related bugs.
+
+### Dynamic imports
+This system now implements and encourages use of Meteor 1.5 Dynamic imports to speed up application load time.  This optimization feature will be most beneficial for larger applications to reduce application load time.  Make careful decisions when to use dynamic imports which include cases where:
+
+  * certain routes are rarely used
+  * expensive UI components
+  * big npm libraries
+  * language internationalization packs.  
+
+In Chrome developer tools, inspect the Network tab and order by size to analyze which modules are the largest and which modules should be split off as known as 'code splitting'.  Another good tool is using a package called 'bundle-visualizer'. Run locally using flag '--production'.  Remember to remove this package before deploying.
+
+It should be noted, the system is also using a Flow Router extras packaged called 'ostrio:flow-router-extra', which replaces kadira:flow-router, arillo:flow-router-helpers & zimme:active-route.  It extends Flow Router also allows for dynamic imports in the 'waitOn' hook inside route definitions.  This makes it really easy to use dynamic imports on specific routes.
 
 ### Naming conventions
 
