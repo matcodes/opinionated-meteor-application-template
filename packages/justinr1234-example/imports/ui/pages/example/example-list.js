@@ -3,7 +3,6 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { ExampleCollection, publicationNames, pkgJson } from 'meteor/justinr1234:example';
 import {
-  subscriptionHandlers,
   subscriptionHandlersHelpers,
   handleError,
   Router,
@@ -12,7 +11,8 @@ import {
 
 const debug = logFactory(pkgJson.name, __filename);
 
-const onCreated = function onCreated() {
+const onCreated = async function onCreated() {
+  const { subscriptionHandlers } = await import("meteor/justinr1234:lib"); //dynamic import
   const instance = this;
   const dataLoading = instance.dataLoading = new ReactiveVar(true);
   const dataLoadingErrors = instance.dataLoadingErrors = new ReactiveDict();

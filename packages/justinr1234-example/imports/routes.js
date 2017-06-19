@@ -6,19 +6,25 @@ import { Router, defaultBlazeRender } from 'meteor/justinr1234:lib';
 //  b) Child paths begin with the group and end WITHOUT a / (e.g. /example/add)
 //  c) Root pages work just like any other child as in (b) (e.b. /home)
 export const routes = {
-  EXAMPLE: {
-    path: '/example/',
-    action: () => defaultBlazeRender('EXAMPLE_LIST'),
-  },
-  EXAMPLE_ADD: {
-    path: '/example/add',
-  },
-  EXAMPLE_LIST: {
-    path: '/example/list',
-  },
-  EXAMPLE_EDIT: {
-    path: '/example/:_id',
-  },
+    EXAMPLE: {
+        path: '/example/',
+        action: () => defaultBlazeRender('EXAMPLE_LIST'),
+        waitOn() {
+            //dynamic imports
+            return [
+                import ('//index.js')
+            ];
+        }
+    },
+    EXAMPLE_ADD: {
+        path: '/example/add',
+    },
+    EXAMPLE_LIST: {
+        path: '/example/list',
+    },
+    EXAMPLE_EDIT: {
+        path: '/example/:_id',
+    },
 };
 
 Router.addRoutes(routes);

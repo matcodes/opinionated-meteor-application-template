@@ -6,15 +6,12 @@ import { Router } from 'meteor/justinr1234:lib';
 //  b) Child paths begin with the group and end WITHOUT a / (e.g. /example/add)
 //  c) Root pages work just like any other child as in (b) (e.b. /home)
 export const routes = {
-    KITCHEN_SINK: {
-        path: '/kitchen-sink',
-        waitOn() {
-            //dynamic imports
-            return [
-                import ('/imports/ui/pages/index.js')
-            ];
-        }
-    },
+  APP_LOGIN: {
+    path: '/login',
+  },
+  APP_REGISTER: {
+    path: '/register',
+  },
 };
 
 Router.addRoutes(routes);

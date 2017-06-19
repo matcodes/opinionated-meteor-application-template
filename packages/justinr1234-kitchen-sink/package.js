@@ -18,7 +18,7 @@ Package.onUse(api => {
 
   // CLIENT LIB
   api.use('templating@1.3.2', 'client');
-  api.use('kadira:flow-router@2.12.1');
+  api.use('ostrio:flow-router-extra@3.1.2');
   api.use('kadira:blaze-layout@2.3.0');
 
   // COMMON LIB
